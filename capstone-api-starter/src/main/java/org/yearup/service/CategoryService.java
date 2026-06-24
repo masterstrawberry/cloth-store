@@ -26,7 +26,8 @@ public class CategoryService
     public Category getById(int categoryId)
     {
         // get category by id
-        return categoryRepository.findById(categoryId).orElse(null);    }
+        return categoryRepository.findById(categoryId).orElse(null);
+    }
 
     public Category create(Category category)
     {
@@ -36,13 +37,12 @@ public class CategoryService
 
     public Category update(int categoryId, Category category)
     {
-        // update category and return the updated category
-        Category existing = categoryRepository.findById(categoryId).orElseThrow();
-        existing.setName(category.getName());
-        existing.setCategoryId(category.getCategoryId());
-        existing.setDescription(category.getDescription());
-
-        return categoryRepository.save(existing);
+        return categoryRepository.findById(categoryId).map(existing -> {
+            existing.setCategoryId(category.getCategoryId());
+            existing.setName(category.getName());
+            existing.setDescription(category.getDescription());
+            return categoryRepository.save(existing);
+        }).orElse(null);
     }
 
     public void delete(int categoryId)

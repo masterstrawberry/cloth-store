@@ -81,12 +81,9 @@ public class CategoriesController
     public Category updateCategory(@PathVariable int id, @RequestBody Category category)
     {
         // update the category by id and return the updated category (200 OK)
-
-        if (categoryService.getById(id) == null)
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
-        Category updatedCategory = categoryService.update(id, category);
-        return ResponseEntity.ok(updatedCategory).getBody();
-//        return categoryService.update(id, category);
+        category.setCategoryId(id);
+        categoryService.update(id, category);
+        return categoryService.getById(id);
 
     }
 
@@ -98,7 +95,7 @@ public class CategoriesController
     public ResponseEntity<Void> deleteCategory(@PathVariable int id)
     {
         if (categoryService.getById(id) == null)
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+            return ResponseEntity.notFound().build();
 
         categoryService.delete(id);
         return ResponseEntity.noContent().build();
