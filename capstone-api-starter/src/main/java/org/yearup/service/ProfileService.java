@@ -18,4 +18,15 @@ public class ProfileService
     {
         return profileRepository.save(profile);
     }
+
+    public Profile updateProfile(Profile profile, int id) {
+        profile.setUserId(id);
+        return profileRepository.save(profile);
+    }
+
+    public Profile getProfile(int id){
+        return profileRepository.findById(id).orElseThrow(()->new RuntimeException("Profile not found"));
+    }
+
+
 }
