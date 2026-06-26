@@ -27,7 +27,7 @@ A Spring Boot backend for an e-commerce-style application with product and categ
 
 | Home Page | Profile  | Shopping Cart |
 |---|---|---|
-| <img width="200" height="200" alt="image" src="" /> | <img width="200" height="200" alt="image" src="" />| <img width="200" height="200" alt="image" src="" />
+| <img width="200" height="200" alt="image" src="img1.png" /> | <img width="200" height="200" alt="image" src="img2.png" />| <img width="200" height="200" alt="image" src="img3.png" />
 
 
 ## Getting Started
